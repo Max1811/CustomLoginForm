@@ -6,11 +6,6 @@ namespace LoginForm.API.Controllers
     [Route("api/login")]
     public class LoginController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public bool Get()
         {
