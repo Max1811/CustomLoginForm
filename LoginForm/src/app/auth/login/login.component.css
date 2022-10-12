@@ -1,0 +1,13 @@
+.content {
+    background-color: aliceblue;
+    padding: 32px;
+    border-radius: 8px;
+}
+
+.login-btn {
+    background: url('../../../assets/images/gradient.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    width: 100%;
+}
