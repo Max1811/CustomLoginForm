@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginForm.API", "LoginForm.
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "LoginForm", "..\LoginForm\LoginForm.esproj", "{1F661283-A4F0-4422-95E3-2B96E0ADA0E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginForm.BL", "..\LoginForm.BL\LoginForm.BL.csproj", "{E743903C-2E77-45CF-B0E2-2144071D0224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginForm.BL", "..\LoginForm.BL\LoginForm.BL.csproj", "{E743903C-2E77-45CF-B0E2-2144071D0224}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginForm.DataAccess", "..\LoginForm.DataAccess\LoginForm.DataAccess.csproj", "{91FB4EF8-59E1-4327-9031-DFE3B1154870}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginForm.DataAccess", "..\LoginForm.DataAccess\LoginForm.DataAccess.csproj", "{91FB4EF8-59E1-4327-9031-DFE3B1154870}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginForm.DependencyResolver", "..\LoginForm.DependencyResolver\LoginForm.DependencyResolver.csproj", "{CBF08BCB-3007-4C61-AB8F-B203C0371157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginForm.Shared", "..\LoginForm.Shared\LoginForm.Shared.csproj", "{0735EA38-0329-4EBA-B216-412B9C775407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,14 @@ Global
 		{91FB4EF8-59E1-4327-9031-DFE3B1154870}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91FB4EF8-59E1-4327-9031-DFE3B1154870}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91FB4EF8-59E1-4327-9031-DFE3B1154870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBF08BCB-3007-4C61-AB8F-B203C0371157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF08BCB-3007-4C61-AB8F-B203C0371157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF08BCB-3007-4C61-AB8F-B203C0371157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF08BCB-3007-4C61-AB8F-B203C0371157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0735EA38-0329-4EBA-B216-412B9C775407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0735EA38-0329-4EBA-B216-412B9C775407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0735EA38-0329-4EBA-B216-412B9C775407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0735EA38-0329-4EBA-B216-412B9C775407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

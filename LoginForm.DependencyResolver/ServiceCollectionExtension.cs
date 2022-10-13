@@ -1,0 +1,18 @@
+﻿using LoginForm.BL.Services;
+using LoginForm.BL.Services.Contracts;
+using LoginForm.DataAccess.Repositories;
+using LoginForm.DataAccess.Repositories.Contracts;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace LoginForm.DependencyResolver
+{
+    public static class ServiceCollectionExtension
+    {
+        public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+        }
+    }
+}
