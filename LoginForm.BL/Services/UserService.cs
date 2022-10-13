@@ -1,10 +1,19 @@
 ﻿using LoginForm.BL.Services.Contracts;
+using LoginForm.DataAccess.Entities;
+using LoginForm.DataAccess.Repositories.Contracts;
 using System.Security.Cryptography;
 
 namespace LoginForm.BL.Services
 {
     public class UserService : IUserService
     {
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         public string EncryptPassword(string password)
         {
             byte[] salt;
@@ -20,6 +29,15 @@ namespace LoginForm.BL.Services
             string hashedPassword = Convert.ToBase64String(hashBytes);
 
             return hashedPassword;
+        }
+
+        public async Task<User?> ValidateUser(string login, string password)
+        {
+            var hashedPassword = EncryptPassword(password);
+
+            var user = await _userRepository.Get(login);
+
+            return user.HashedPassword == hashedPassword ? user : null;
         }
     }
 }
