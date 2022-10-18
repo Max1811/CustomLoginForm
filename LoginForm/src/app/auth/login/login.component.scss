@@ -57,6 +57,7 @@
     }
 
     .sign-up-services-wrapper {
+      padding-bottom: 5rem;
 
       .sign-up-service-list {
         display: flex;
@@ -79,12 +80,34 @@
         }
 
         .facebook {
-            background-image: url("../../../assets/images/facebook-logo.png");
+          background-image: url("../../../assets/images/facebook-logo.png");
         }
 
         .twitter {
-            background-image: url("../../../assets/images/twitter-logo.png");
+          background-image: url("../../../assets/images/twitter-logo.png");
         }
+      }
+    }
+
+    .sign-up-using-sign-up-wrapper {
+
+      p {
+        padding-bottom: 0.2rem;
+        margin: 0;
+        font-size: 11px;
+        font-weight: 500;
+      }
+
+      .sign-up {
+        color: #333;
+        font-weight: 500;
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .sign-up:hover {
+        text-decoration: none;
       }
     }
   }
