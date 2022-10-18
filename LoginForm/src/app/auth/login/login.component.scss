@@ -1,13 +1,43 @@
-.content {
-    background-color: aliceblue;
+.content-wrapper {
+  color: #333;
+
+  .content {
+    background-color: #fff;
     padding: 32px;
-    border-radius: 8px;
+    border-radius: 10px;
+    width: 25%;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+
+    .title {
+      font-weight: 700;
+      padding-bottom: 2rem;
+    }
+
+    .login-form {
+
+      .label-text {
+        font-size: 10px;
+        margin: 0;
+        font-weight: 500;
+      }
+
+      .form-control {
+          border: none;
+          border-bottom: 1px solid #666;
+          
+      }
+    }
+  }
 }
 
 .login-btn {
     background: url('../../../assets/images/gradient.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
-
+    border: none;
     width: 100%;
 }
