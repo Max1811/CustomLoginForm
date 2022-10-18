@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     if (result) {
       this.router.navigate(["/"]);
     } else {
-      this.router.navigate(["/"]);
+      this.loginForm.reset();
     }
 
     this.submitted = true;
