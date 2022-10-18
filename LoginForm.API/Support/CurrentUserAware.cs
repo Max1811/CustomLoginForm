@@ -22,8 +22,6 @@ namespace LoginForm.API.Support
         {
             ClaimsPrincipal? user = _httpContextAccessor.HttpContext?.User;
 
-            var d = _httpContextAccessor.HttpContext?.User.Identity.Name;
-
             if (user != null)
             {
                 string? userLogin = user.FindFirst(ClaimTypes.Email)?.Value;
