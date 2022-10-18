@@ -24,7 +24,7 @@ namespace LoginForm.API.Support
 
             if (user != null)
             {
-                string? userLogin = user.FindFirst(ClaimTypes.Email)?.Value;
+                string? userLogin = user.FindFirst(ClaimTypes.Name)?.Value;
 
                 if (userLogin != null)
                 {
