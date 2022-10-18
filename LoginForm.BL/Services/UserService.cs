@@ -33,11 +33,14 @@ namespace LoginForm.BL.Services
 
         public async Task<User?> ValidateUser(string login, string password)
         {
-            var hashedPassword = EncryptPassword(password);
+            var user = await _userRepository.GetByLogin(login);
 
-            var user = await _userRepository.Get(login);
+            if (user != null && EncryptPassword(password) == user.HashedPassword)
+            {
+                return user;
+            }
 
-            return user.HashedPassword == hashedPassword ? user : null;
+            return null;
         }
     }
 }

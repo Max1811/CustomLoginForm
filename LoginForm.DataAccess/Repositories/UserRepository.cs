@@ -13,7 +13,7 @@ namespace LoginForm.DataAccess.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<User> Get(string login)
+        public async Task<User> GetByLogin(string login)
         {
             var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.Login == login);
 

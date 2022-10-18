@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private accountService: AccountService) { }
 
   ngOnInit(): void {
 
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   get form() { return this.loginForm.controls; }
 
-  public onSubmit(): void {
+  public async onSubmit(): Promise<void> {
     if(this.loginForm.invalid) {
       return;
     }
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
 
-    console.log('All goooood');
+    const result = await this.accountService.login(this.form.username.value, this.form.password.value);
 
     this.loading = false;
 

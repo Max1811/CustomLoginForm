@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ApiClient } from '../services/api.client';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,6 @@ export class HomeComponent {
 
   public testCall: boolean;
 
-  constructor(http: HttpClient) {
-    http.get<boolean>('/api/login').subscribe(result => {
-      this.testCall = result;
-    }, error => console.error(error));
+  constructor() {
   }
 }
