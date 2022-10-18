@@ -21,13 +21,7 @@ namespace LoginForm.API.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        public bool Get()
-        {
-            return false;
-        }
-
-        [HttpPost]
+        [HttpPost("login")]
         [AllowAnonymous]
         public async Task<bool> Login(LoginCredentials credentials)
         {

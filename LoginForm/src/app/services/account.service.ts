@@ -7,8 +7,8 @@ import { ApiClient } from './api.client';
 export class AccountService {
     constructor(private api: ApiClient) { }
 
-    public login(email: string, password: string): Promise<boolean> {
-        return this.api.post('account/login', { email: email, password: password })
+    public login(login: string, password: string): Promise<boolean> {
+        return this.api.post('account/login', { login: login, password: password })
     }
 
     public getCurrentUser(): Promise<ICurrentUser | null> {

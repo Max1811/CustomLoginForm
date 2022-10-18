@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   get form() { return this.loginForm.controls; }
 
   public async onSubmit(): Promise<void> {
-    if(this.loginForm.invalid) {
+    if (this.loginForm.invalid) {
       return;
     }
 
@@ -43,17 +43,5 @@ export class LoginComponent implements OnInit {
     const result = await this.accountService.login(this.form.username.value, this.form.password.value);
 
     this.loading = false;
-
-    //this.auth.service.login(this.form.username.value, this.form.password.value)
-          //.pipe(first())
-          //.subscribe(
-            //data => {
-                //this.router.navigate([this.returnUrl]);
-            }//,
-            //error => {
-                //this.alertService.error(error);
-                //this.loading = false;
-            //});
-  //}
-
+  }
 }
