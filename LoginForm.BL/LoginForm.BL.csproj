@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LoginForm.DataAccess\LoginForm.DataAccess.csproj" />
+    <ProjectReference Include="..\LoginForm.Shared\LoginForm.Shared.csproj" />
   </ItemGroup>
 
 </Project>

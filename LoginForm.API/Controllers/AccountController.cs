@@ -1,12 +1,12 @@
 ﻿using LoginForm.API.Models;
 using LoginForm.BL.Services.Contracts;
-using LoginForm.DataAccess.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using LoginForm.API.Models.ViewModels;
+using LoginForm.Shared;
 
 namespace LoginForm.API.Controllers
 {
@@ -59,7 +59,7 @@ namespace LoginForm.API.Controllers
             if (!ModelState.IsValid)
                 return null;
 
-            var hashedPassword = _userService.EncryptPassword(credentials.Password);
+            var hashedPassword = Encryptor.EncryptPassword(credentials.Password);
 
             throw new NotImplementedException();
         }
