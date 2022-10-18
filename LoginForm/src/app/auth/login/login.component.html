@@ -19,13 +19,23 @@
           <a routerLink="/password-recover" class="btn align-right forgot-password">Forgot password?</a>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group submit-button-wrapper">
         <button [disabled]="loading" class="btn btn-primary rounded-pill login-btn">
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
           LOGIN
         </button>
       </div>
     </form>
+    <div class="text-center">
+      <p class="sign-up-using">Or Sign Up Using</p>
+    </div>
+    <div class="sign-up-services-wrapper">
+      <ul class="sign-up-service-list list-cleanup">
+        <li class="sign-up-service-item google"></li>
+        <li class="sign-up-service-item facebook"></li>
+        <li class="sign-up-service-item twitter"></li>
+      </ul>
+    </div>
   </div>
 </div>
 
