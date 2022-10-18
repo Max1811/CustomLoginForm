@@ -11,6 +11,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     top: 50%;
+    z-index: 1;
 
     .title {
       font-weight: 700;
@@ -28,6 +29,25 @@
       .form-control {
         border: none;
         border-bottom: 1px solid #666;
+        font-family: Arial, FontAwesome;
+      }
+
+      .form-control:focus {
+        box-shadow: none;
+      }
+
+      .form-control::placeholder {
+        color: #999;
+        font-size: 12px;
+      }
+
+      .forgot-password {
+          font-size: 14px;
+          font-weight: 500;
+      }
+
+      .password-input-wrapper {
+          
       }
     }
   }

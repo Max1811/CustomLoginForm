@@ -4,19 +4,19 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <div class="form-group">
         <label for="username" class="label-text">Username</label>
-        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.username.errors }" />
+        <input type="text" formControlName="username" class="form-control" placeholder="&#xf007;  Type your username" [ngClass]="{ 'is-invalid': submitted && form.username.errors }" />
         <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
           <div *ngIf="form.username.errors.required">Username is required</div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group password-input-wrapper">
         <label for="password" class="label-text">Password</label>
-        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.password.errors }" />
+        <input type="password" formControlName="password" class="form-control" placeholder="&#xf023;  Type your password" [ngClass]="{ 'is-invalid': submitted && form.password.errors }" />
         <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
           <div *ngIf="form.password.errors.required">Password is required</div>
         </div>
         <div class="text-right">
-          <a routerLink="/password-recover" class="btn align-right">Forgot password?</a>
+          <a routerLink="/password-recover" class="btn align-right forgot-password">Forgot password?</a>
         </div>
       </div>
       <div class="form-group">
