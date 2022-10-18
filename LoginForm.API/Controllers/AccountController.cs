@@ -7,6 +7,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using LoginForm.API.Models.ViewModels;
 using LoginForm.Shared;
+using LoginForm.DataAccess.Entities;
 
 namespace LoginForm.API.Controllers
 {
@@ -14,11 +15,14 @@ namespace LoginForm.API.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        private readonly ICurrentUserAware _currentUserAware;
 
         public AccountController(
-            IUserService userService)
+            IUserService userService,
+            ICurrentUserAware currentUserAware)
         {
             _userService = userService;
+            _currentUserAware = currentUserAware;
         }
 
         [HttpPost("login")]
@@ -30,8 +34,7 @@ namespace LoginForm.API.Controllers
             if (user != null)
             {
                 var claims = new[] {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Email, user.Login)
+                    new Claim(ClaimTypes.Name, user.Login)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -51,6 +54,20 @@ namespace LoginForm.API.Controllers
         {
             await HttpContext.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("me")]
+        public async Task<CurrentUserDto?> Me()
+        {
+            User? currentUser = await _currentUserAware.GetCurrentUser();
+
+            return currentUser == null ? null : 
+                await Task.FromResult(new CurrentUserDto
+                {
+                    Id = currentUser.Id,
+                    Login = currentUser.Login
+                });
         }
 
         [HttpPost]

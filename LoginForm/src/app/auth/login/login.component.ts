@@ -36,12 +36,17 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.submitted = true;
-
     this.loading = true;
 
     const result = await this.accountService.login(this.form.username.value, this.form.password.value);
 
+    if (result) {
+      this.router.navigate(["/"]);
+    } else {
+      this.router.navigate(["/"]);
+    }
+
+    this.submitted = true;
     this.loading = false;
   }
 }

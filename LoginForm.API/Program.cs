@@ -1,3 +1,5 @@
+using LoginForm.API.Support;
+using LoginForm.BL.Services.Contracts;
 using LoginForm.DataAccess;
 using LoginForm.DependencyResolver;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -27,6 +29,8 @@ builder.Services.AddDbContext<DataContext>
     (item => item.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLLocalConnectionString")));
 
 builder.Services.RegisterDependencies(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrentUserAware, CurrentUserAware>();
 
 var app = builder.Build();
 

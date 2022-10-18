@@ -15,6 +15,7 @@ import { PasswordRecoverComponent } from './auth/password-recover/password-recov
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterComponent } from './auth/register/register.component';
+import { LoggedInGuard } from './logged-in.guard';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { RegisterComponent } from './auth/register/register.component';
     
     RouterModule.forRoot(routes, { useHash: false }),
   ],
-  providers: [],
+  providers: [LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
