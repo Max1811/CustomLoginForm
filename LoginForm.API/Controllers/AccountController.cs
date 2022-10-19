@@ -49,6 +49,18 @@ namespace LoginForm.API.Controllers
             return false;
         }
 
+        [HttpPost("sign-up")]
+        public async Task<bool> SignUp(PostUserViewModel credentials)
+        {
+            if (!ModelState.IsValid)
+                return false;
+
+            byte[] passwordSalt;
+            var hashedPassword = Encryptor.EncryptWithRandomSalt(credentials.Password, out passwordSalt);
+
+            return true;
+        }
+
         [HttpPost]
         public async Task Logout()
         {
@@ -68,17 +80,6 @@ namespace LoginForm.API.Controllers
                     Id = currentUser.Id,
                     Login = currentUser.Login
                 });
-        }
-
-        [HttpPost]
-        public IActionResult SignUp(PostUserViewModel credentials)
-        {
-            if (!ModelState.IsValid)
-                return null;
-
-            var hashedPassword = Encryptor.EncryptPassword(credentials.Password);
-
-            throw new NotImplementedException();
         }
     }
 }

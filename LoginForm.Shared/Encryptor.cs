@@ -4,11 +4,15 @@ namespace LoginForm.Shared
 {
     public static class Encryptor
     {
-        public static string EncryptPassword(string password)
+        public static string EncryptWithRandomSalt(string password, out byte[] salt)
         {
-            byte[] salt;
             RandomNumberGenerator.Fill(salt = new byte[16]);
 
+            return Encrypt(password, salt);
+        }
+
+        public static string Encrypt(string password, byte[] salt)
+        {
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
             byte[] hash = pbkdf2.GetBytes(20);
 

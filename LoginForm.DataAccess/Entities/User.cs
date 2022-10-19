@@ -8,6 +8,8 @@
 
         public string HashedPassword { get; set; }
 
+        public byte[] PasswordSalt { get; set; }
+
         public DateTime CreationDate { get; set; }
 
         public bool IsActive { get; set; }

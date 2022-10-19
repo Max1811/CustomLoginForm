@@ -18,7 +18,7 @@ namespace LoginForm.BL.Services
         {
             var user = await _userRepository.GetByLogin(login);
 
-            return user?.HashedPassword == Encryptor.EncryptPassword(password) ? user : null;
+            return user is not null && user.HashedPassword == Encryptor.Encrypt(password, user.PasswordSalt) ? user : null;
         }
     }
 }
