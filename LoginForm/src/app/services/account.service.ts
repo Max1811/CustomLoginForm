@@ -5,15 +5,19 @@ import { ApiClient } from './api.client';
     providedIn:'root'
   })
 export class AccountService {
-    constructor(private api: ApiClient) { }
+  constructor(private api: ApiClient) { }
 
-    public login(login: string, password: string): Promise<boolean> {
-        return this.api.post('account/login', { login: login, password: password })
-    }
+  public login(login: string, password: string): Promise<boolean> {
+      return this.api.post('account/login', { login: login, password: password })
+  }
 
-    public getCurrentUser(): Promise<ICurrentUser | null> {
-        return this.api.get('account/me');
-    }
+  public getCurrentUser(): Promise<ICurrentUser | null> {
+      return this.api.get('account/me');
+  }
+
+  public signUp(email: string, login: string, password: string): Promise<boolean> {
+    return this.api.post('account/sign-up', { email: email, login: login, password: password });
+  }
 }
 
 export interface ICurrentUser {

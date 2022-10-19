@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoggedInGuard } from './logged-in.guard';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { LoggedInGuard } from './logged-in.guard';
     HomeComponent,
     LoginComponent,
     PasswordRecoverComponent,
-    RegisterComponent
+    RegisterComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
