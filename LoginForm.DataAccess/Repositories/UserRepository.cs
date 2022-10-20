@@ -13,6 +13,22 @@ namespace LoginForm.DataAccess.Repositories
             _dataContext = dataContext;
         }
 
+        public async Task<User> Add(string email, string login, string hashedPassword, byte[] salt)
+        {
+            var entity = new User
+            {
+                Email = email,
+                Login = login,
+                HashedPassword = hashedPassword,
+                PasswordSalt = salt
+            };
+
+            var user = await _dataContext.Users.AddAsync(entity);
+            _dataContext.SaveChanges();
+
+            return user.Entity;
+        }
+
         public async Task<User> GetByLogin(string login)
         {
             var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.Login == login);

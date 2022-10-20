@@ -2,6 +2,7 @@
 using LoginForm.DataAccess.Entities;
 using LoginForm.DataAccess.Repositories.Contracts;
 using LoginForm.Shared;
+using System.Net;
 
 namespace LoginForm.BL.Services
 {
@@ -13,7 +14,16 @@ namespace LoginForm.BL.Services
         {
             _userRepository = userRepository;
         }
-        
+
+        public async Task<User> SignUp(string email, string login, string password)
+        {
+            byte[] passwordSalt;
+            var hashedPassword = Encryptor.EncryptWithRandomSalt(password, out passwordSalt);
+
+            //add check for existing user by login
+            return await _userRepository.Add(email, login, hashedPassword, passwordSalt);
+        }
+
         public async Task<User?> ValidateUser(string login, string password)
         {
             var user = await _userRepository.GetByLogin(login);

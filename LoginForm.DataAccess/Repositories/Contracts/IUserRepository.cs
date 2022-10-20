@@ -5,6 +5,9 @@ namespace LoginForm.DataAccess.Repositories.Contracts
     public interface IUserRepository
     {
         public Task<User> GetByLogin(string login);
+
         public Task Update(User user);
+
+        public Task<User> Add(string email, string login, string hashedPassword, byte[] salt);
     }
 }

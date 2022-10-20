@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using LoginForm.API.Models.ViewModels;
-using LoginForm.Shared;
 using LoginForm.DataAccess.Entities;
 
 namespace LoginForm.API.Controllers
@@ -50,13 +48,12 @@ namespace LoginForm.API.Controllers
         }
 
         [HttpPost("sign-up")]
-        public async Task<bool> SignUp(PostUserViewModel credentials)
+        public async Task<bool> SignUp(SignUpModelDto credentials)
         {
             if (!ModelState.IsValid)
                 return false;
 
-            byte[] passwordSalt;
-            var hashedPassword = Encryptor.EncryptWithRandomSalt(credentials.Password, out passwordSalt);
+            var user = await _userService.SignUp(credentials.Email, credentials.Login, credentials.Password);
 
             return true;
         }
