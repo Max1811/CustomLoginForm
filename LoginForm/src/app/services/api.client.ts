@@ -85,7 +85,7 @@ export class ApiClient {
     }
 
     protected getCredentialsOption(): boolean | undefined {
-        return undefined;
+        return true;
     }
 
     protected subscribe<TResult = any>(observable: Observable<HttpResponse<TResult>>, url: string, silent?: boolean, full: boolean = false): Promise<TResult | null> {
