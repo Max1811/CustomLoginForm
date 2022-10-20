@@ -19,5 +19,11 @@ namespace LoginForm.DataAccess.Repositories
 
             return user;
         }
+
+        public async Task Update(User user)
+        {
+            _dataContext.Attach(user);
+            await _dataContext.SaveChangesAsync();
+        }
     }
 }
