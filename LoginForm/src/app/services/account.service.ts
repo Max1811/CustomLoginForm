@@ -11,6 +11,10 @@ export class AccountService {
       return this.api.post('account/login', { login: login, password: password })
   }
 
+  public logout() {
+      return this.api.post('account/logout', {});
+  }
+
   public getCurrentUser(): Promise<ICurrentUser | null> {
       return this.api.get('account/me');
   }

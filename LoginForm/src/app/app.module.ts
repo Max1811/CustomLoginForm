@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoggedInGuard } from './logged-in.guard';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { CurrentUserStorage } from './current-user-storage';
 
 
 @NgModule({
@@ -41,7 +42,10 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     
     RouterModule.forRoot(routes, { useHash: false }),
   ],
-  providers: [LoggedInGuard],
+  providers: [
+    LoggedInGuard,
+    CurrentUserStorage
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

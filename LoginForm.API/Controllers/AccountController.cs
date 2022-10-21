@@ -74,7 +74,7 @@ namespace LoginForm.API.Controllers
             return true;
         }
 
-        [HttpPost]
+        [HttpPost("logout")]
         public async Task Logout()
         {
             await HttpContext.SignOutAsync(

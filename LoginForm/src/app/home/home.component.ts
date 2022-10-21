@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ApiClient } from '../services/api.client';
+import { Router } from '@angular/router';
+import { CurrentUserStorage } from '../current-user-storage';
+import { AccountService, ICurrentUser } from '../services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,17 @@ import { ApiClient } from '../services/api.client';
 })
 export class HomeComponent {
 
-  public testCall: boolean;
+  public currentUser: ICurrentUser;
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private currentUserStorage: CurrentUserStorage,
+    private accountService: AccountService
+  ) {
+    this.currentUser = this.currentUserStorage.currentUser;
+  }
+
+  public async logout() {
+    await this.accountService.logout();
   }
 }

@@ -9,18 +9,8 @@ import { LoggedInGuard } from "./logged-in.guard";
 export const routes: Routes = [
     {
         path: '',
-        canActivate: [LoggedInGuard],
-        children: [
-            {
-                path: '',
-                redirectTo: 'home',
-                pathMatch: 'full',
-            },
-            {
-                path: 'home',
-                component: HomeComponent
-            }
-        ]
+        component: HomeComponent,
+        canActivate: [LoggedInGuard]
     },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
