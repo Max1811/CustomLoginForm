@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using LoginForm.DataAccess.Entities;
+using AutoMapper;
+using LoginForm.BL.Models;
+using LoginForm.DataAccess.Repositories.Contracts;
 
 namespace LoginForm.API.Controllers
 {
@@ -13,14 +16,20 @@ namespace LoginForm.API.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
         private readonly ICurrentUserAware _currentUserAware;
+        private readonly IMapper _mapper;
 
         public AccountController(
             IUserService userService,
-            ICurrentUserAware currentUserAware)
+            IUserRepository userRepository,
+            ICurrentUserAware currentUserAware,
+            IMapper mapper)
         {
             _userService = userService;
+            _userRepository = userRepository;
             _currentUserAware = currentUserAware;
+            _mapper = mapper;
         }
 
         [HttpPost("login")]
@@ -48,12 +57,19 @@ namespace LoginForm.API.Controllers
         }
 
         [HttpPost("sign-up")]
-        public async Task<bool> SignUp(SignUpModelDto credentials)
+        public async Task<bool> SignUp(SignUpDto credentials)
         {
             if (!ModelState.IsValid)
                 return false;
 
-            var user = await _userService.SignUp(credentials.Email, credentials.Login, credentials.Password);
+            bool isUserExists = await _userRepository.IsUserExists(credentials.Login);
+
+            if (isUserExists) // add message that this login has been already taken
+                return false;
+
+            var userModel = _mapper.Map<SignUpModel>(credentials);
+
+            var user = await _userService.SignUp(userModel);
 
             return true;
         }

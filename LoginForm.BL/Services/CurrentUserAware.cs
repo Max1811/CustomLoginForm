@@ -1,9 +1,10 @@
 ﻿using LoginForm.BL.Services.Contracts;
 using LoginForm.DataAccess.Entities;
 using LoginForm.DataAccess.Repositories.Contracts;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace LoginForm.API.Support
+namespace LoginForm.BL.Services
 {
     public class CurrentUserAware : ICurrentUserAware
     {

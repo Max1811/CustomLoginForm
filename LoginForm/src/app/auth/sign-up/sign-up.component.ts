@@ -40,9 +40,10 @@ export class SignUpComponent implements OnInit {
     this.loading = true;
 
     const result = await this.accountService.signUp(this.form.email.value, this.form.username.value, this.form.password.value);
+    console.log(result);
 
     if (result) {
-      this.router.navigate(["/"]);
+      this.router.navigate(["/login"]);
     } else {
       this.signUpForm.reset();
     }

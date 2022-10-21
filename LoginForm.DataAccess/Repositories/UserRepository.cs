@@ -13,16 +13,8 @@ namespace LoginForm.DataAccess.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<User> Add(string email, string login, string hashedPassword, byte[] salt)
+        public async Task<User> Add(User entity)
         {
-            var entity = new User
-            {
-                Email = email,
-                Login = login,
-                HashedPassword = hashedPassword,
-                PasswordSalt = salt
-            };
-
             var user = await _dataContext.Users.AddAsync(entity);
             _dataContext.SaveChanges();
 
@@ -34,6 +26,11 @@ namespace LoginForm.DataAccess.Repositories
             var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.Login == login);
 
             return user;
+        }
+
+        public async Task<bool> IsUserExists(string login)
+        {
+            return await _dataContext.Users.AnyAsync(u => u.Login == login);
         }
 
         public async Task Update(User user)

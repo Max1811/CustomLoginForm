@@ -1,5 +1,5 @@
-using LoginForm.API.Support;
-using LoginForm.BL.Services.Contracts;
+using AutoMapper;
+using LoginForm.API.Mapper;
 using LoginForm.DataAccess;
 using LoginForm.DependencyResolver;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -19,9 +19,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>
     (item => item.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLLocalConnectionString")));
 
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MappingProfile());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 builder.Services.RegisterDependencies(builder.Configuration);
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ICurrentUserAware, CurrentUserAware>();
 
 var app = builder.Build();
 

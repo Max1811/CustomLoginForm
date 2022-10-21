@@ -1,27 +1,36 @@
-﻿using LoginForm.BL.Services.Contracts;
+﻿using AutoMapper;
+using LoginForm.BL.Models;
+using LoginForm.BL.Services.Contracts;
 using LoginForm.DataAccess.Entities;
 using LoginForm.DataAccess.Repositories.Contracts;
 using LoginForm.Shared;
-using System.Net;
 
 namespace LoginForm.BL.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(
+            IUserRepository userRepository,
+            IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
-        public async Task<User> SignUp(string email, string login, string password)
+        public async Task<User> SignUp(SignUpModel model)
         {
             byte[] passwordSalt;
-            var hashedPassword = Encryptor.EncryptWithRandomSalt(password, out passwordSalt);
+            var hashedPassword = Encryptor.EncryptWithRandomSalt(model.Password, out passwordSalt);
+
+            model.Salt = passwordSalt;
+
+            var user = _mapper.Map<User>(model);
 
             //add check for existing user by login
-            return await _userRepository.Add(email, login, hashedPassword, passwordSalt);
+            return await _userRepository.Add(user);
         }
 
         public async Task<User?> ValidateUser(string login, string password)

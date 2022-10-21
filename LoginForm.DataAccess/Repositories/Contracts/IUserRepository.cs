@@ -8,6 +8,8 @@ namespace LoginForm.DataAccess.Repositories.Contracts
 
         public Task Update(User user);
 
-        public Task<User> Add(string email, string login, string hashedPassword, byte[] salt);
+        public Task<User> Add(User entity);
+
+        public Task<bool> IsUserExists(string login);
     }
 }

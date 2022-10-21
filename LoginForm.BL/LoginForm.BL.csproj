@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LoginForm.DataAccess\LoginForm.DataAccess.csproj" />
     <ProjectReference Include="..\LoginForm.Shared\LoginForm.Shared.csproj" />
   </ItemGroup>
