@@ -1,45 +1,46 @@
-<div class="content-wrapper">
-  <div class="content">
-    <h2 class="text-center title">SIGN UP</h2>
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="login-form">
-      <div class="form-group">
-        <label for="email" class="label-text">Email</label>
-        <input type="email" formControlName="email" class="form-control" placeholder="&#xf0e0;  Type your email" [ngClass]="{ 'is-invalid': submitted && form.username.errors }" />
-        <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
-          <div *ngIf="form.username.errors.required">Email is required</div>
+<div class="jumbotron">
+  <div class="content-wrapper">
+    <div class="content">
+      <h2 class="text-center title">SIGN UP</h2>
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-group">
+          <label for="email" class="label-text">Email</label>
+          <input type="email" formControlName="email" class="form-control" placeholder="&#xf0e0;  Type your email" [ngClass]="{ 'is-invalid': submitted && form.username.errors }" />
+          <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
+            <div *ngIf="form.username.errors.required">Email is required</div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="username" class="label-text">Username</label>
-        <input type="text" formControlName="username" class="form-control" placeholder="&#xf007;  Type your username" [ngClass]="{ 'is-invalid': submitted && form.username.errors }" />
-        <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
-          <div *ngIf="form.username.errors.required">Username is required</div>
+        <div class="form-group">
+          <label for="username" class="label-text">Username</label>
+          <input type="text" formControlName="username" class="form-control" placeholder="&#xf007;  Type your username" [ngClass]="{ 'is-invalid': submitted && form.username.errors }" />
+          <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
+            <div *ngIf="form.username.errors.required">Username is required</div>
+          </div>
         </div>
-      </div>
-      <div class="form-group password-input-wrapper">
-        <label for="password" class="label-text">Password</label>
-        <input type="password" formControlName="password" class="form-control" placeholder="&#xf023;  Type your password" [ngClass]="{ 'is-invalid': submitted && form.password.errors }" />
-        <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
-          <div *ngIf="form.password.errors.required">Password is required</div>
+        <div class="form-group password-input-wrapper">
+          <label for="password" class="label-text">Password</label>
+          <input type="password" formControlName="password" class="form-control" placeholder="&#xf023;  Type your password" [ngClass]="{ 'is-invalid': submitted && form.password.errors }" />
+          <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+            <div *ngIf="form.password.errors.required">Password is required</div>
+          </div>
         </div>
+        <div class="form-group submit-button-wrapper">
+          <button [disabled]="loading" class="btn btn-primary rounded-pill login-btn">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            SIGN UP
+          </button>
+        </div>
+      </form>
+      <div class="text-center">
+        <p class="sign-up-using">Or Sign Up Using</p>
       </div>
-      <div class="form-group submit-button-wrapper">
-        <button [disabled]="loading" class="btn btn-primary rounded-pill login-btn">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-          SIGN UP
-        </button>
+      <div class="sign-up-services-wrapper">
+        <ul class="sign-up-service-list list-cleanup">
+          <li class="sign-up-service-item facebook"></li>
+          <li class="sign-up-service-item twitter"></li>
+          <li class="sign-up-service-item google"></li>
+        </ul>
       </div>
-    </form>
-    <div class="text-center">
-      <p class="sign-up-using">Or Sign Up Using</p>
-    </div>
-    <div class="sign-up-services-wrapper">
-      <ul class="sign-up-service-list list-cleanup">
-        <li class="sign-up-service-item facebook"></li>
-        <li class="sign-up-service-item twitter"></li>
-        <li class="sign-up-service-item google"></li>
-      </ul>
     </div>
   </div>
 </div>
-
