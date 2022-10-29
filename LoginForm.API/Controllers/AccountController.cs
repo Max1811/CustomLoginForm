@@ -9,6 +9,8 @@ using LoginForm.DataAccess.Entities;
 using AutoMapper;
 using LoginForm.BL.Models;
 using LoginForm.DataAccess.Repositories.Contracts;
+using LoginForm.BL.Parsing;
+using System.IO;
 
 namespace LoginForm.API.Controllers
 {
@@ -84,7 +86,7 @@ namespace LoginForm.API.Controllers
         [AllowAnonymous]
         [HttpGet("me")]
         public async Task<CurrentUserDto?> Me()
-        {
+        {         
             User? currentUser = await _currentUserAware.GetCurrentUser();
 
             return currentUser == null ? null : 

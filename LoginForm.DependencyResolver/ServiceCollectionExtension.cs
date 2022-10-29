@@ -1,4 +1,6 @@
-﻿using LoginForm.BL.Services;
+﻿using LoginForm.BL.Algorithms;
+using LoginForm.BL.Parsing;
+using LoginForm.BL.Services;
 using LoginForm.BL.Services.Contracts;
 using LoginForm.DataAccess.Repositories;
 using LoginForm.DataAccess.Repositories.Contracts;
@@ -17,6 +19,9 @@ namespace LoginForm.DependencyResolver
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICurrentUserAware, CurrentUserAware>();
+            services.AddScoped<ISourceParser, XlsxSourceParser>();
+            services.AddScoped<IAlgorithmProcessor, AnalyticHierarchyProcessor>();
+            services.AddScoped<IAlgorithmService, AnaliticHierarchyService>();
         }
     }
 }

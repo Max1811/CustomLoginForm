@@ -1,4 +1,7 @@
-﻿using LoginForm.BL.Services.Contracts;
+﻿using LoginForm.BL.Algorithms;
+using LoginForm.BL.Parsing;
+using LoginForm.BL.Parsing.Models;
+using LoginForm.BL.Services.Contracts;
 using LoginForm.DataAccess.Entities;
 using LoginForm.DataAccess.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
