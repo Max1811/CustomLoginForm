@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between">
     <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/upload">Upload File</a>
+        <a class="nav-item nav-link" routerLink="/votes">Votes</a>
     </div>
     <div class="navbar-nav">
         <a class="nav-item nav-link" >{{currentUser.login}}33333333333</a>
@@ -10,20 +11,7 @@
 
 <!-- main app container -->
 <div class="jumbotron">
-    <h1 id="tableLabel">Weather forecast</h1>
-
-    <p (click)="executeAlgorithm()">This component demonstrates fetching data from the server.</p>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-    </table>
+    <router-outlet></router-outlet>
 </div>
 
 <div class="footer">

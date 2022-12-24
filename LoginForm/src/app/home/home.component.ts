@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrentUserStorage } from '../current-user-storage';
 import { AccountService, ICurrentUser } from '../services/account.service';
-import { AlgorithmService } from '../services/algorithm.service';
+import { AlgorithmExecutionResult, AlgorithmService } from '../services/algorithm.service';
+import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
   selector: 'app-home',
@@ -14,20 +15,10 @@ export class HomeComponent {
   public currentUser: ICurrentUser;
 
   constructor(
-    private router: Router,
     private currentUserStorage: CurrentUserStorage,
-    private accountService: AccountService,
-    private algorithmService: AlgorithmService
+    private accountService: AccountService
   ) {
     this.currentUser = this.currentUserStorage.currentUser;
-  }
-
-  public async executeAlgorithm()
-  {
-    const path = "ewewew";
-    var result = await this.algorithmService.analiticHierarchyExecute(path);
-
-    console.error(result);
   }
 
   public async logout() {

@@ -18,6 +18,9 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoggedInGuard } from './logged-in.guard';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { CurrentUserStorage } from './current-user-storage';
+import { MatTableModule } from '@angular/material/table';
+import { UploadComponent } from './upload/upload.component';
+import { VotesComponent } from './votes/votes.component';
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import { CurrentUserStorage } from './current-user-storage';
     LoginComponent,
     PasswordRecoverComponent,
     RegisterComponent,
-    SignUpComponent
+    SignUpComponent,
+    UploadComponent,
+    VotesComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { CurrentUserStorage } from './current-user-storage';
     //material modules
     MatButtonModule,
     MatIconModule,
-    //MaterialModule,
+    MatTableModule,
     
     RouterModule.forRoot(routes, { useHash: false }),
   ],

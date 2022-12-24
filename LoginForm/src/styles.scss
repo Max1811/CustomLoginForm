@@ -30,3 +30,84 @@ html, body {
   left: 0;
   padding: 0;
 }
+
+$border-color: #707070;
+$bg-color: #F0EFEF;
+$font-color: #707070;
+
+.navbar {
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+  }
+  
+.footer {
+    position: fixed;
+    background-color: #000;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px 50px;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .with-margin {
+    margin-left: 32px;
+  }
+  
+
+  .file-input {
+    display: none;
+  }
+
+  .content-wrapper {
+    color: #333;
+  
+    .content {
+      background-color: #fff;
+      padding: 32px;
+      border-radius: 10px;
+      width: 25%;
+      height: auto;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      z-index: 1;
+  
+      .title {
+        font-weight: 700;
+        padding-bottom: 1.5rem;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    margin-top: 32px;
+
+    &.mat-table {
+      .mat-header-cell {
+        text-align: center;;
+      }
+
+      td.mat-cell {
+          border-right: 1px solid $border-color;
+          border-bottom-color: $border-color;
+          text-align: center;
+          &:first-of-type {
+              border-left: 1px solid $border-color;
+              padding-left: 0;
+          }
+      }
+    }
+
+    .max {
+      font-weight: bold;
+    }
+}
+
+  
