@@ -21,9 +21,9 @@ namespace LoginForm.BL.Services
             _processor = processor;
         }
 
-        public List<AlgorithmExecutionResult> GetResults(string path)
+        public List<AlgorithmExecutionResult> GetResults(string fileName)
         {
-            using var stream = File.Open("C:/Users/vakyl/Desktop/Book2.xlsx", FileMode.Open, FileAccess.Read);
+            using var stream = File.Open("C:/Users/vakyl/Desktop/" + fileName, FileMode.Open, FileAccess.Read);
             var parceResult = _parser.Parse(stream);
 
             var result = _processor.Handle((List<Alternative>)parceResult.Alternatives, (List<Criterion>)parceResult.Criterias, (List<double>)parceResult.RelativeImportanceList);

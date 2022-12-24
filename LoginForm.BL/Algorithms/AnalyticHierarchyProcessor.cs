@@ -62,13 +62,14 @@ namespace LoginForm.BL.Algorithms
                 if (sortDesc == SortingDirection.Ascending)
                 {
                     values = alternatives.OrderBy(x => x.Criterias[i].Value).Select(x => x.Criterias[i].Value).ToList();
+                    alternatives = alternatives.OrderBy(x => x.Criterias[i].Value).ToList();
+
                 }
                 else
                 {
                     values = alternatives.OrderByDescending(x => x.Criterias[i].Value).Select(x => x.Criterias[i].Value).ToList();
+                    alternatives = alternatives.OrderByDescending(x => x.Criterias[i].Value).ToList();
                 }
-
-                alternatives = alternatives.OrderBy(x => x.Criterias[i].Value).ToList();
 
                 var rankScale = GenerateScale(values, relativeImportance);
 

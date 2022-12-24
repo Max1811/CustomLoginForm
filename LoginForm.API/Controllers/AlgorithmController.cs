@@ -14,9 +14,9 @@ namespace LoginForm.API.Controllers
         }       
 
         [HttpGet("analitic-hierarchy")]
-        public IEnumerable<AlgorithmExecutionResult> GetAnaliticHierarchyResults(string path)
+        public IEnumerable<AlgorithmExecutionResult> GetAnaliticHierarchyResults(string fileName)
         {
-            var result = _algorithmService.GetResults(path);
+            var result = _algorithmService.GetResults(fileName);
 
             return result;
         }

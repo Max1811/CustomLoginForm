@@ -7,8 +7,8 @@ import { ApiClient } from './api.client';
 export class AlgorithmService {
   constructor(private api: ApiClient) { }
 
-  public analiticHierarchyExecute(path: string):Promise<AlgorithmExecutionResult[] | null> {
-      return this.api.get('algorithm/analitic-hierarchy' + `?path=${path}`).then((data: any[]) => {
+  public analiticHierarchyExecute(fileName?: string):Promise<AlgorithmExecutionResult[] | null> {
+      return this.api.get('algorithm/analitic-hierarchy' + `?fileName=${fileName}`).then((data: any[]) => {
         return data.map((r: any) => new AlgorithmExecutionResult(r));
     });
   }
