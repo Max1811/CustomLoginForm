@@ -20,7 +20,7 @@
             </button>
         </div>
 
-        <table *ngIf="dataSource.data.length" mat-table [dataSource]="dataSource">
+        <table *ngIf="dataSource.data.length" id="table" mat-table [dataSource]="dataSource">
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> Alternative Name </th>
@@ -35,5 +35,11 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+
+        <div *ngIf="dataSource.data.length" class="text-center">
+            <button class="btn btn-primary rounded-pill text-center" (click)="downloadResults()">
+                Download results
+            </button>
+        </div>
     </div>
 </div>
