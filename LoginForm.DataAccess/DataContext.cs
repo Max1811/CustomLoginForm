@@ -8,6 +8,9 @@ namespace LoginForm.DataAccess
     public class DataContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Alternative> Alternatives { get; set; }
+        public DbSet<Voting> Votings { get; set; }
+        public DbSet<VotingResult> VotingResults { get; set; }
 
         public DataContext() { }
 
@@ -17,6 +20,9 @@ namespace LoginForm.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new AlternativeConfiguration());
+            modelBuilder.ApplyConfiguration(new VotingConfiguration());
+            modelBuilder.ApplyConfiguration(new VotingResultConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
