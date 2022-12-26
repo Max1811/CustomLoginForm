@@ -30,7 +30,7 @@ namespace LoginForm.BL.Services
             var user = _mapper.Map<User>(model);
 
             //add check for existing user by login
-            return await _userRepository.Add(user);
+            return await _userRepository.AddAsync(user);
         }
 
         public async Task<User?> ValidateUser(string login, string password)

@@ -2,13 +2,9 @@
 
 namespace LoginForm.DataAccess.Repositories.Contracts
 {
-    public interface IUserRepository
+    public interface IUserRepository : IDataRepository<User>
     {
         public Task<User> GetByLogin(string login);
-
-        public Task Update(User user);
-
-        public Task<User> Add(User entity);
 
         public Task<bool> IsUserExists(string login);
     }
