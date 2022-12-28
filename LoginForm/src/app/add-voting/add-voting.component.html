@@ -1,0 +1,25 @@
+<div class="content-wrapper">
+    <div class="content">
+        <h1 class="mat-display-1 zt-header">Create New Voting</h1>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <mat-card class="zt-content-card">
+            <mat-form-field class="zt-form-field-full-width">
+              <input matInput placeholder="Name" [formControl]="nameControl" type="text" required>
+            </mat-form-field>
+        
+            <!--<div *ngFor="let alternative of alternativesListControl">
+                <mat-form-field class="zt-form-field-full-width">
+                    <input matInput placeholder="Alternative name" [formControl]="alternative" type="text" required>
+                  </mat-form-field>
+            </div>-->
+          </mat-card>
+        
+          <div class="zt-flex-container">
+            <a mat-raised-button [routerLink]="['/votes']">Back to List</a>
+            <span class="zt-fill-remaining-space"></span>
+            <button mat-raised-button color="primary" [disabled]="!form.valid">Save</button>
+          </div>
+        </form>
+    </div>
+</div>

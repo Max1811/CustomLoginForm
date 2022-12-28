@@ -1,0 +1,32 @@
+<div class="content-wrapper">
+    <div class="content">
+        <h1 class="mat-display-1 zt-header">
+            <a mat-icon-button color="primary" [routerLink]="['/votes', 'add']" style="float: right;">
+              <mat-icon>add</mat-icon>
+            </a>
+            Votings List
+        </h1>
+
+        <mat-card class="zt-content-card">       
+            <mat-table [dataSource]="dataSource" matSort> 
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                    <mat-cell *matCellDef="let item">{{item.name}}</mat-cell>
+                </ng-container>
+            
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let item">
+                        <a mat-icon-button color="primary" (click)="remove(item)"><mat-icon>delete</mat-icon></a>
+                    </mat-cell>
+                  </ng-container>
+
+                
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/vote', row.id ]" style="cursor: pointer"></mat-row>
+              </mat-table>
+        </mat-card>
+    </div>
+</div>
+

@@ -110,4 +110,40 @@ $font-color: #707070;
     }
 }
 
+
+h1 {
+  &.zt-header {
+    margin: 40px 0 20px 0;
+
+    &.mat-display-1 {
+      margin: 40px 0 20px 0;
+    }
+  }
+}
+
+.zt-content-card {
+  margin-bottom: 20px;
+}
+
+.zt-form-field-full-width {
+  width: 100%;
+}
+
+.zt-full-height-form-field .mat-form-field-wrapper, 
+.zt-full-height-form-field .mat-form-field-wrapper .mat-input-element,
+.zt-full-height-form-field .mat-form-field-wrapper .mat-input-flex, 
+.zt-full-height-form-field .mat-form-field-wrapper .mat-input-infix, 
+.zt-full-height-form-field .mat-form-field-wrapper .mat-input-element 
+{
+  height: 100%;
+}
+
+body {
+
+  input {
+    font-family: inherit;
+    color: currentColor;
+  }
+}
+
   

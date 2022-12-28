@@ -6,7 +6,9 @@ import { RegisterComponent } from "./auth/register/register.component";
 import { HomeComponent } from "./home/home.component";
 import { LoggedInGuard } from "./logged-in.guard";
 import { UploadComponent } from "./upload/upload.component";
-import { VotesComponent } from "./votes/votes.component";
+import { VotesListComponent } from "./votes-list/votes-list.component";
+import { VoteComponent } from "./vote/vote.component";
+import { AddVotingComponent } from "./add-voting/add-voting.component";
 
 export const routes: Routes = [
     {
@@ -20,7 +22,15 @@ export const routes: Routes = [
             },
             {
                 path: 'votes',
-                component: VotesComponent
+                component: VotesListComponent,
+            },
+            {
+                path: 'votes/add',
+                component: AddVotingComponent
+            },
+            {
+                path: 'vote/:id',
+                component: VoteComponent
             }
         ]
     },

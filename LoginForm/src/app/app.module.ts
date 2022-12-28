@@ -20,7 +20,25 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { CurrentUserStorage } from './current-user-storage';
 import { MatTableModule } from '@angular/material/table';
 import { UploadComponent } from './upload/upload.component';
-import { VotesComponent } from './votes/votes.component';
+import { VotesListComponent } from './votes-list/votes-list.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AddVotingComponent } from './add-voting/add-voting.component';
 
 
 @NgModule({
@@ -32,7 +50,8 @@ import { VotesComponent } from './votes/votes.component';
     RegisterComponent,
     SignUpComponent,
     UploadComponent,
-    VotesComponent
+    VotesListComponent,
+    AddVotingComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +63,24 @@ import { VotesComponent } from './votes/votes.component';
     MatButtonModule,
     MatIconModule,
     MatTableModule,
+
+    MatCardModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
     
     RouterModule.forRoot(routes, { useHash: false }),
   ],
