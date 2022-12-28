@@ -6,7 +6,7 @@ namespace LoginForm.DataAccess.Repositories
 {
     public class VotingResultRepository : DataRepository<VotingResult>, IVotingResultRepository
     {
-        protected VotingResultRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
+        public VotingResultRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
         {
 
         }

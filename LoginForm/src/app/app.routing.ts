@@ -29,6 +29,6 @@ export const routes: Routes = [
     { path: 'password-recover', component: PasswordRecoverComponent },
     { path: 'sign-up', component: SignUpComponent }, 
 
-        // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+        // otherwise redirect to upload
+    { path: '**', redirectTo: 'upload' }
 ];

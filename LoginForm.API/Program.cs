@@ -1,6 +1,7 @@
 using AutoMapper;
 using LoginForm.API.Mapper;
 using LoginForm.DataAccess;
+using LoginForm.DataAccess.Repositories.Abstract;
 using LoginForm.DependencyResolver;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
