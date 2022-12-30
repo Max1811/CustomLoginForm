@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-voting',
@@ -7,19 +7,33 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-voting.component.scss']
 })
 export class AddVotingComponent implements OnInit {
+  private votingForm: FormGroup;
 
-  nameControl = this.formBuilder.control<string>('', [ Validators.required]);
-  alternativesListControl = this.formBuilder.array([]);
-
-  form: FormGroup = this.formBuilder.group({
-    'email': this.nameControl,
-    'alternativesList': this.alternativesListControl
-  });
-
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { 
+    this.votingForm = this.formBuilder.group({  
+      name: '',  
+      alternativesList: this.formBuilder.array([]) 
+    }); 
+    
+    this.addQuantity();
+  }
 
   ngOnInit(): void {
   }
+
+  get alternativesList() : FormArray {  
+    return this.votingForm.get("alternativesList") as FormArray  
+  }  
+
+  public addQuantity() {  
+    this.alternativesList.push(this.newAlternative());  
+  }  
+
+  private newAlternative(): FormGroup {  
+    return this.formBuilder.group({  
+      name: ''
+    })  
+  }  
 
   submit() {
   }

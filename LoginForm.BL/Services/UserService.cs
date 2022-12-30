@@ -29,6 +29,9 @@ namespace LoginForm.BL.Services
 
             var user = _mapper.Map<User>(model);
 
+            user.PasswordSalt = passwordSalt;
+            user.HashedPassword = hashedPassword;
+
             //add check for existing user by login
             return await _userRepository.AddAsync(user);
         }

@@ -39,6 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AddVotingComponent } from './add-voting/add-voting.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { AddVotingComponent } from './add-voting/add-voting.component';
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-
+    MatInputModule,
+    BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,
     MatListModule,
