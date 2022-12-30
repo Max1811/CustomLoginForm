@@ -7,7 +7,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-voting.component.scss']
 })
 export class AddVotingComponent implements OnInit {
-  private votingForm: FormGroup;
+  public votingForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { 
     this.votingForm = this.formBuilder.group({  
