@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { VotingService } from '../services/voting.service';
 
 @Component({
   selector: 'app-add-voting',
@@ -9,7 +10,11 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class AddVotingComponent implements OnInit {
   public votingForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private formBuilder: FormBuilder,
+    private votingService: VotingService
+  ) { 
     this.votingForm = this.formBuilder.group({  
       name: '',  
       alternativesList: this.formBuilder.array([]) 
@@ -20,6 +25,14 @@ export class AddVotingComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  ngAfterViewChecked(){
+    this.cdr.detectChanges();
+ }
+
+  get votingName() : FormControl {  
+    return this.votingForm.get("name") as FormControl  
+  } 
 
   get alternativesList() : FormArray {  
     return this.votingForm.get("alternativesList") as FormArray  
@@ -34,6 +47,14 @@ export class AddVotingComponent implements OnInit {
   }
 
   public submit() {
+    const formData = {
+      'name' : this.votingName.value,
+      'alternatives' : this.alternativesList.controls.map(control => control.value)
+    };
+
+    console.error(formData);
+
+    this.votingService.add(formData);
   }
 
   private newAlternative(): FormGroup {  

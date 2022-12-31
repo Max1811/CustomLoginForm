@@ -2,7 +2,7 @@
     <div class="content">
         <h1 class="mat-display-1 zt-header">Create New Voting</h1>
 
-        <form [formGroup]="votingForm" (ngSubmit)="submit()" >
+        <form [formGroup]="votingForm">
           <mat-card class="zt-content-card">
             <mat-form-field class="zt-form-field-full-width with-padding-bottom" appearance="fill">
               <input matInput placeholder="Name of voting" formControlName="name" type="text" required>
@@ -31,7 +31,7 @@
           <div class="zt-flex-container">
             <a mat-raised-button [routerLink]="['/votes']">Back to List</a>
             <span class="zt-fill-remaining-space"></span>
-            <button mat-raised-button color="primary" [disabled]="!votingForm.valid">Save</button>
+            <button mat-raised-button color="primary" [disabled]="!votingForm.valid" (click)="submit()">Save</button>
           </div>
         </form>
     </div>
