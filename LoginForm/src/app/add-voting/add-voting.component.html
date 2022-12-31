@@ -4,17 +4,28 @@
 
         <form [formGroup]="votingForm" (ngSubmit)="submit()" >
           <mat-card class="zt-content-card">
-            <mat-form-field class="zt-form-field-full-width">
-              <input matInput placeholder="Name" formControlName="name" type="text" required>
+            <mat-form-field class="zt-form-field-full-width with-padding-bottom" appearance="fill">
+              <input matInput placeholder="Name of voting" formControlName="name" type="text" required>
             </mat-form-field>
         
             <ng-container formArrayName="alternativesList" *ngFor="let alternative of alternativesList.controls; index as i">
               <ng-container [formGroupName]="i">
-                <mat-form-field class="zt-form-field-full-width">
-                    <input matInput placeholder="Alternative name" formControlName="name" type="text" required>
+                <div class="flex-content">
+                  <mat-form-field class="zt-form-field-full-width" appearance="fill">
+                    <input matInput placeholder="Alternative # {{i + 1}} " formControlName="name" type="text" required>
                   </mat-form-field>
+                  <a mat-icon-button color="primary" (click)="removeAlternative(i)" 
+                    [class.disabled] = "alternativesList.length <= 1"><mat-icon>delete</mat-icon></a>
+                </div>
               </ng-container>
             </ng-container>
+
+            <div class="with-padding-top">
+              <button class="btn btn-primary rounded-pill text-center" (click)="addNewAlternative()">
+                  Add alternative
+              </button>
+          </div>
+
           </mat-card>
         
           <div class="zt-flex-container">

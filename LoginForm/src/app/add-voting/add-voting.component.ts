@@ -15,7 +15,7 @@ export class AddVotingComponent implements OnInit {
       alternativesList: this.formBuilder.array([]) 
     }); 
     
-    this.addQuantity();
+    this.addNewAlternative();
   }
 
   ngOnInit(): void {
@@ -25,17 +25,21 @@ export class AddVotingComponent implements OnInit {
     return this.votingForm.get("alternativesList") as FormArray  
   }  
 
-  public addQuantity() {  
+  public addNewAlternative() {  
     this.alternativesList.push(this.newAlternative());  
-  }  
+  } 
+  
+  public removeAlternative(index: number) {
+    this.alternativesList.removeAt(index);
+  }
+
+  public submit() {
+  }
 
   private newAlternative(): FormGroup {  
     return this.formBuilder.group({  
       name: ''
     })  
   }  
-
-  submit() {
-  }
 
 }

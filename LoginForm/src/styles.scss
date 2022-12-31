@@ -70,7 +70,7 @@ $font-color: #707070;
       background-color: #fff;
       padding: 32px;
       border-radius: 10px;
-      width: 25%;
+      //width: 25%;
       height: auto;
       position: absolute;
       left: 50%;
@@ -146,4 +146,9 @@ body {
   }
 }
 
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
   
