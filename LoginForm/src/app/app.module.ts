@@ -40,6 +40,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AddVotingComponent } from './add-voting/add-voting.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { VoteComponent } from './vote/vote.component';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignUpComponent,
     UploadComponent,
     VotesListComponent,
-    AddVotingComponent
+    AddVotingComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+
+    DragDropModule,
     
     RouterModule.forRoot(routes, { useHash: false }),
   ],
