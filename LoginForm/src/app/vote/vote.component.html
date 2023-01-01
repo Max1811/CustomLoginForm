@@ -4,5 +4,10 @@
         <div cdkDropList class="list-items" (cdkDropListDropped)="drop($event)">
             <div class="item" *ngFor="let alternative of alternatives; index as i" cdkDrag>{{i + 1}}. {{ alternative.name }}</div>
         </div>
+        <div class="with-padding-top">
+            <button class="btn btn-primary rounded-pill text-center" (click)="vote()">
+                Vote your choose
+            </button>
+        </div>
     </div>
 </div>
