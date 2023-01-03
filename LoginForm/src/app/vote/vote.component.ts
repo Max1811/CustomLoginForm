@@ -36,8 +36,8 @@ export class VoteComponent implements OnInit {
   }
 
   private emit(): void {
-    this.alternatives.forEach((element, index) => {
-      element.order = index + 1;
+    this.alternatives.forEach((alternative, index) => {
+      alternative.order = index + 1;
     });
   }
 }

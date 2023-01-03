@@ -9,6 +9,7 @@ namespace LoginForm.DataAccess
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Alternative> Alternatives { get; set; }
+        public DbSet<OrderedAlternative> OrderedAlternatives { get; set; }
         public DbSet<Voting> Votings { get; set; }
         public DbSet<VotingResult> VotingResults { get; set; }
 
@@ -21,6 +22,7 @@ namespace LoginForm.DataAccess
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new AlternativeConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderedAlternativeConfiguration());
             modelBuilder.ApplyConfiguration(new VotingConfiguration());
             modelBuilder.ApplyConfiguration(new VotingResultConfiguration());
         }

@@ -4,8 +4,6 @@
     {
         public string Name { get; set; }
 
-        public int Order { get; set; }
-
         public virtual Voting Voting { get; set; }
     }
 }
