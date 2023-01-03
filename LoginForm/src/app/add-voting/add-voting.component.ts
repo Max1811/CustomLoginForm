@@ -54,7 +54,7 @@ export class AddVotingComponent implements OnInit {
 
     console.error(formData);
 
-    this.votingService.add(formData);
+    this.votingService.add(formData).then();
   }
 
   private newAlternative(): FormGroup {  
