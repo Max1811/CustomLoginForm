@@ -1,8 +1,8 @@
 <div class="content-wrapper">
     <div class="content">
-        <h1 class="mat-display-1 zt-header">{{ title }}</h1>
+        <h1 class="mat-display-1 zt-header">{{ voting?.name || title }}</h1>
         <div cdkDropList class="list-items" (cdkDropListDropped)="drop($event)">
-            <div class="item" *ngFor="let alternative of alternatives; index as i" cdkDrag>{{i + 1}}. {{ alternative.name }}</div>
+            <div class="item" *ngFor="let alternative of voting?.alternatives; index as i" cdkDrag>{{i + 1}}. {{ alternative.name }}</div>
         </div>
         <div class="with-padding-top">
             <button class="btn btn-primary rounded-pill text-center" (click)="vote()">

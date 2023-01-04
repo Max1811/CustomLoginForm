@@ -8,6 +8,6 @@
         }
         public string Name { get; set; }
 
-        public virtual Voting Voting { get; set; }
+        public virtual Voting? Voting { get; set; }
     }
 }

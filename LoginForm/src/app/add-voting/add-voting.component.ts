@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { VotingService } from '../services/voting.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class AddVotingComponent implements OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private formBuilder: FormBuilder,
-    private votingService: VotingService
+    private votingService: VotingService,
+    private router: Router
   ) { 
     this.votingForm = this.formBuilder.group({  
       name: '',  
@@ -52,9 +54,9 @@ export class AddVotingComponent implements OnInit {
       'alternatives' : this.alternativesList.controls.map(control => control.value)
     };
 
-    console.error(formData);
-
-    this.votingService.add(formData).then();
+    this.votingService.add(formData).then(async result => {
+      this.router.navigate(["/votes"]);
+    });
   }
 
   private newAlternative(): FormGroup {  

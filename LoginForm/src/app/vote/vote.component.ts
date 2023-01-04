@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Alternative } from '../models/alternative';
+import { Alternative, Voting } from '../models/alternative';
+import { VotingService } from '../services/voting.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vote',
@@ -10,12 +12,17 @@ import { Alternative } from '../models/alternative';
 export class VoteComponent implements OnInit {
 
   public title: string = "The President of Ukraine 2024";
-
   public alternatives: Alternative[];
+  public voting: Voting | null;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private votingService: VotingService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const id = this.router.url.split('/').pop();
+    this.voting = await this.votingService.get(id).then();
+
     this.alternatives = [
       { name : 'Zelenskiy', order: 1 },
       { name : 'Zidan', order: 2 },

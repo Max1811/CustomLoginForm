@@ -5,24 +5,27 @@ using LoginForm.DataAccess.Repositories.Abstract;
 using LoginForm.DependencyResolver;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
         .AddCookie();
 
-builder.Services.AddControllers().AddJsonOptions(options =>
+builder.Services.AddControllers().AddJsonOptions(opt =>
 {
-    options.JsonSerializerOptions.IgnoreNullValues = true;
-    options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+    opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
+builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>
-    (item => item.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLLocalConnectionString")));
+    (item => item
+        .UseLazyLoadingProxies()
+        .UseSqlServer(builder.Configuration.GetConnectionString("MSSQLLocalConnectionString")));
 
 var mapperConfig = new MapperConfiguration(mc =>
 {
