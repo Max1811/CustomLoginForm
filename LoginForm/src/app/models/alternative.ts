@@ -32,3 +32,13 @@ export class VotingResult {
     public alternatives: Alternative[]
     public isVoted: boolean;
 }
+
+export class VotingExecutionResult {
+    public methodName: string;
+    public result: VotingExecution[];
+}
+
+export class VotingExecution {
+    public alternatives: string[];
+    public rank: number
+}

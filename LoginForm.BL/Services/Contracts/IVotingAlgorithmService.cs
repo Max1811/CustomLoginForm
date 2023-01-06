@@ -9,6 +9,6 @@ namespace LoginForm.BL.Services.Contracts
 {
     public interface IVotingAlgorithmService
     {
-        Task<IEnumerable<VotingExecutionResult>> GetResults(int votingId);
+        Task<IEnumerable<VotingExecutionResult>> GetResults(long votingId);
     }
 }

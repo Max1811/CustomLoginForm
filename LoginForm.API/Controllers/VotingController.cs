@@ -1,9 +1,11 @@
 ﻿using LoginForm.API.Models;
+using LoginForm.BL.Parsing.Models;
 using LoginForm.BL.Services.Contracts;
 using LoginForm.DataAccess.Entities;
 using LoginForm.DataAccess.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Alternative = LoginForm.DataAccess.Entities.Alternative;
 
 namespace LoginForm.API.Controllers
 {
@@ -13,14 +15,18 @@ namespace LoginForm.API.Controllers
         private readonly ICurrentUserAware _currentUserAware;
         private readonly IVotingRepository _votingRepository;
         private readonly IVotingResultRepository _votingResultRepository;
+        private readonly IVotingAlgorithmService _voteAlgorithmService;
+
         public VotingController(
             IVotingRepository votingRepository,
             IVotingResultRepository votingResultRepository,
-            ICurrentUserAware currentUserAware)
+            ICurrentUserAware currentUserAware,
+            IVotingAlgorithmService voteAlgorithmService)
         {
             _votingRepository = votingRepository;
             _votingResultRepository = votingResultRepository;
             _currentUserAware = currentUserAware;
+            _voteAlgorithmService = voteAlgorithmService;
         }
 
         [HttpGet("getAll")]
@@ -29,6 +35,8 @@ namespace LoginForm.API.Controllers
             var list = await _votingRepository.GetAll();
 
             var votingDto = list.Select(result => new VotingDto() { Id = result.Id, Name = result.Name });
+
+            await _voteAlgorithmService.GetResults(1);
 
             return votingDto;
         }
@@ -126,6 +134,14 @@ namespace LoginForm.API.Controllers
             }
 
             return true;
+        }
+
+        [HttpGet("getAlgorithmsResult/{votingId}")]
+        public async Task<IEnumerable<VotingExecutionResult>> GetAlgorithmsResult(long votingId)
+        {
+            var result = await _voteAlgorithmService.GetResults(votingId);
+
+            return result;
         }
     }
 }

@@ -12,7 +12,38 @@ namespace LoginForm.BL.Algorithms
     {
         public List<VotingExecutionResult> Handle(IEnumerable<VotingResult> results)
         {
-            throw new NotImplementedException();
+            var result = new List<VotingExecutionResult>();
+
+            var deBordResult = DeBordAlgoritgh(results.ToList());
+
+            result.Add(deBordResult);
+
+            return result;
+        }
+
+        private VotingExecutionResult DeBordAlgoritgh(List<VotingResult> results)
+        {
+            var result = new VotingExecutionResult();
+            result.MethodName = "De Bord Algorithm";
+
+            var alternatives = results.Select(result => result.Alternatives).ToList();
+            var uniqueNames = alternatives.Select(alternative => alternative.DistinctBy(a => a.Name)).ToList()[0].Select(a => a.Name).ToList();
+
+            foreach (var name in uniqueNames)
+            {
+                var rank = results.Select(res => res.Alternatives.Where(a => a.Name == name).Sum(x => x.Order)).ToList().Sum();
+
+                var votingExecution = new VotingExecution()
+                {
+                    Alternatives = new List<string>() { name },
+                    Rank = rank
+                };
+                result.Result.Add(votingExecution);
+            }
+
+            result.Result = result.Result.OrderBy(x => x.Rank).ToList();
+
+            return result;
         }
     }
 }
