@@ -39,6 +39,7 @@ export class VotingExecutionResult {
 }
 
 export class VotingExecution {
-    public alternatives: string[];
-    public rank: number
+    public alternatives: string[] = [];
+    public rank: number;
+    public alternativesString: string = this.alternatives.join(" ");
 }

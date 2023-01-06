@@ -36,8 +36,6 @@ namespace LoginForm.API.Controllers
 
             var votingDto = list.Select(result => new VotingDto() { Id = result.Id, Name = result.Name });
 
-            await _voteAlgorithmService.GetResults(1);
-
             return votingDto;
         }
 

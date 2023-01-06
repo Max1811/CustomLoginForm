@@ -1,26 +1,72 @@
 <div class="content-wrapper">
     <div class="content">
         <h1 class="mat-display-1 zt-header">{{ voting?.name }}</h1>
-        <div *ngIf="!votingResult?.isVoted">
-            <div cdkDropList class="list-items" (cdkDropListDropped)="drop($event)">
-                <div class="item" *ngFor="let alternative of voting?.alternatives; index as i" cdkDrag>{{alternative.order ?? i + 1}}. {{ alternative.name }}</div>
-            </div>
-            <div class="with-padding-top">
-                <button class="btn btn-primary rounded-pill text-center" (click)="vote()">
-                    Vote your choose
-                </button>
-            </div>
-        </div>
-        <div *ngIf="votingResult?.isVoted">
-            <div class="list-items">
-                <div class="item" [class.voted] = "votingResult?.isVoted"
-                    *ngFor="let alternative of voting?.alternatives; index as i">{{i + 1}}. {{ alternative.name }}</div>
-            </div>
-            <div class="with-padding-top">
-                <button class="btn btn-primary rounded-pill text-center" (click)="revote()">
-                    Change your voting
-                </button>
-            </div>
+        <div class="content-body">
+            <ng-container *ngIf="votingView">
+                <div *ngIf="!votingResult?.isVoted">
+                    <div cdkDropList class="list-items" (cdkDropListDropped)="drop($event)">
+                        <div class="item" *ngFor="let alternative of voting?.alternatives; index as i" cdkDrag>{{alternative.order ?? i + 1}}. {{ alternative.name }}</div>
+                    </div>
+                    <div class="with-padding-top">
+                        <button class="btn btn-primary rounded-pill text-center" (click)="vote()">
+                            Vote your choose
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="votingResult?.isVoted">
+                    <div class="list-items">
+                        <div class="item" [class.voted] = "votingResult?.isVoted"
+                            *ngFor="let alternative of voting?.alternatives; index as i">{{i + 1}}. {{ alternative.name }}</div>
+                    </div>
+                    <div class="navigation">
+                        <div class="with-padding-top">
+                            <button class="btn btn-primary rounded-pill text-center" (click)="revote()">
+                                Change your voting
+                            </button>
+                        </div>
+                        <div class="with-padding-top">
+                            <button class="btn btn-primary rounded-pill text-center" (click)="seeAllResults()">
+                                See all results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!votingView">
+                <div class="text-center">
+                    {{currentAgorithmResult.methodName}}
+                </div>
+        
+                <table *ngIf="currentAgorithmResult.result.length" id="table" mat-table [dataSource]="dataSource">
+        
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Alternative Name </th>
+                        <td mat-cell *matCellDef="let element">{{element.alternatives.join(' ')}}</td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="rank">
+                        <th mat-header-cell *matHeaderCellDef> Sum of Ranks </th>
+                        <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
+                    </ng-container>
+        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            
+
+                <div class="navigation">
+                    <div class="with-padding-top">
+                        <button class="btn btn-primary rounded-pill text-center" (click)="backToVoting()">
+                            Back To Voting
+                        </button>
+                    </div>
+                    <div class="with-padding-top">
+                        <button class="btn btn-primary rounded-pill text-center" (click)="nextResult()">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>

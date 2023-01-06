@@ -1,9 +1,10 @@
 import { AfterContentChecked, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Alternative, Voting, VotingResult } from '../models/alternative';
+import { Alternative, Voting, VotingExecution, VotingExecutionResult, VotingResult } from '../models/alternative';
 import { VotingService } from '../services/voting.service';
 import { Router } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-vote',
@@ -13,17 +14,26 @@ import { registerLocaleData } from '@angular/common';
 export class VoteComponent implements OnInit {
 
   public title: string = "The President of Ukraine 2024";
+  public votingId: string | undefined;
   public alternatives: Alternative[];
   public voting: Voting;
   public votingResult: VotingResult | null;
+
+  public votingView: boolean = true;
+  public votingAlgorithmResults: VotingExecutionResult[];
+  public displayedColumns = ['name', 'rank'];
+
+  public currentIndex = 0;
+  public currentAgorithmResult: VotingExecutionResult;
+  public dataSource: MatTableDataSource<VotingExecution> = new MatTableDataSource<VotingExecution>();
 
   constructor(
     private router: Router,
     private votingService: VotingService) { }
 
   async ngOnInit(): Promise<void> {
-    const id = this.router.url.split('/').pop();
-    this.voting = await this.votingService.get(id).then();
+    this.votingId = this.router.url.split('/').pop();
+    this.voting = await this.votingService.get(this.votingId).then();
     this.load();
   }
 
@@ -63,9 +73,37 @@ export class VoteComponent implements OnInit {
     }
   }
 
+  public async seeAllResults() {
+    this.votingView = false;
+    this.votingAlgorithmResults = (await this.votingService.getAlgorithmsResult(this.votingId)) ?? [];
+
+    this.setView(this.currentIndex);
+  }
+
+  public backToVoting() {
+    this.votingView = true;
+    this.currentIndex = 0;
+  }
+
+  public nextResult() {
+    this.setView(this.currentIndex)
+  }
+
+  private setView(index: number) {
+    if (this.votingAlgorithmResults) {
+      if (this.votingAlgorithmResults.length - 1 <= this.currentIndex) {
+          this.currentIndex = 0;
+      } else {
+        this.currentIndex++;
+      }
+
+      this.currentAgorithmResult = this.votingAlgorithmResults[index];
+      this.dataSource.data = this.currentAgorithmResult.result;
+    }
+  }
+
   private async load() {
-    const id = this.router.url.split('/').pop();
-    this.votingResult = await this.votingService.getResult(id).then();
+    this.votingResult = await this.votingService.getResult(this.votingId).then();
 
     if(this.votingResult) {
       this.voting.alternatives = this.votingResult.alternatives;

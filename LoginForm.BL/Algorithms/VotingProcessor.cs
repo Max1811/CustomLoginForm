@@ -15,7 +15,6 @@ namespace LoginForm.BL.Algorithms
             var result = new List<VotingExecutionResult>();
 
             var deBordResult = DeBordAlgoritgh(results.ToList());
-
             result.Add(deBordResult);
 
             return result;
