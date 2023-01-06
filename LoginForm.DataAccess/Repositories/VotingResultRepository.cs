@@ -16,5 +16,10 @@ namespace LoginForm.DataAccess.Repositories
         {
             return await Entities.FirstOrDefaultAsync(u => u.UserId == userId && u.VotingId == votingId);
         }
+
+        public async Task<IEnumerable<VotingResult>> GetByVoting(long votingId)
+        {
+            return await Entities.Where(u => u.VotingId == votingId).ToListAsync();
+        }
     }
 }

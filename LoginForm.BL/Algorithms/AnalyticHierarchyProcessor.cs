@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LoginForm.BL.Algorithms
 {
-    public class AnalyticHierarchyProcessor : IAlgorithmProcessor
+    public class AnalyticHierarchyProcessor : IAnalyticHierarchyProcessorProcessor
     {
         public List<AlgorithmExecutionResult> Handle(List<Alternative> alternatives, List<Criterion> criterias, List<double> relativeImportanceList)
         {

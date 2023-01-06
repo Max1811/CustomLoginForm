@@ -27,8 +27,11 @@ namespace LoginForm.DependencyResolver
 
             services.AddScoped<ICurrentUserAware, CurrentUserAware>();
             services.AddScoped<ISourceParser, XlsxSourceParser>();
-            services.AddScoped<IAlgorithmProcessor, AnalyticHierarchyProcessor>();
+            services.AddScoped<IAnalyticHierarchyProcessorProcessor, AnalyticHierarchyProcessor>();
             services.AddScoped<IAlgorithmService, AnaliticHierarchyService>();
+
+            services.AddScoped<IVotingProcessor, VotingProcessor>();
+            services.AddScoped<IVotingAlgorithmService, VotingAlgorithmService>();
         }
     }
 }

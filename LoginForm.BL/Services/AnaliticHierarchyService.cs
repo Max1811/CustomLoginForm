@@ -13,9 +13,9 @@ namespace LoginForm.BL.Services
     public class AnaliticHierarchyService : IAlgorithmService
     {
         private readonly ISourceParser _parser;
-        private readonly IAlgorithmProcessor _processor;
+        private readonly IAnalyticHierarchyProcessorProcessor _processor;
 
-        public AnaliticHierarchyService(ISourceParser parser, IAlgorithmProcessor processor)
+        public AnaliticHierarchyService(ISourceParser parser, IAnalyticHierarchyProcessorProcessor processor)
         {
             _parser = parser;
             _processor = processor;

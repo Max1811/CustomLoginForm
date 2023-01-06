@@ -1,4 +1,5 @@
 ﻿using LoginForm.BL.Parsing.Models;
+using LoginForm.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace LoginForm.BL.Algorithms
 {
-    public interface IAlgorithmProcessor
+    public interface IVotingProcessor
     {
-        List<AlgorithmExecutionResult> Handle(List<Alternative> alternatives, List<Criterion> criterias, List<double> relativeImportanceList);
+        List<VotingExecutionResult> Handle(IEnumerable<VotingResult> results);
     }
 }
