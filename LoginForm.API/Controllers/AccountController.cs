@@ -43,6 +43,7 @@ namespace LoginForm.API.Controllers
             if (user != null)
             {
                 var claims = new[] {
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Login)
                 };
 

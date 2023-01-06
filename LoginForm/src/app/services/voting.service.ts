@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Voting } from "../models/alternative";
+import { Voting, VotingResult } from "../models/alternative";
 import { ApiClient } from "./api.client";
 
 export interface VotingAddForm {
@@ -27,5 +27,13 @@ export class VotingService {
 
   public remove(id: number): Promise<boolean> {
     return this.api.post('voting/remove', id)
+  }
+
+  public getResult(votingId: string | undefined): Promise<VotingResult | null> {
+    return this.api.get('voting/getResult/' + votingId);
+  }
+
+  public makeVote(voteResult: VotingResult | null): Promise<boolean> {
+    return this.api.post('voting/makeVote', voteResult);
   }
 }

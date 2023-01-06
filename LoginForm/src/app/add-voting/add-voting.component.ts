@@ -30,7 +30,7 @@ export class AddVotingComponent implements OnInit {
 
   ngAfterViewChecked(){
     this.cdr.detectChanges();
- }
+  }
 
   get votingName() : FormControl {  
     return this.votingForm.get("name") as FormControl  
