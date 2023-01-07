@@ -15,7 +15,12 @@ namespace LoginForm.BL.Algorithms
             var result = new List<VotingExecutionResult>();
 
             var deBordResult = DeBordAlgoritgh(results.ToList());
+            var pleuralResult = PleuralProcedure(results.ToList());
+            var reversedPleuralResult = ReversedPleuralProcedure(results.ToList());
+
             result.Add(deBordResult);
+            result.Add(pleuralResult);
+            result.Add(reversedPleuralResult);
 
             return result;
         }
@@ -26,7 +31,8 @@ namespace LoginForm.BL.Algorithms
             result.MethodName = "De Bord Algorithm";
 
             var alternatives = results.Select(result => result.Alternatives).ToList();
-            var uniqueNames = alternatives.Select(alternative => alternative.DistinctBy(a => a.Name)).ToList()[0].Select(a => a.Name).ToList();
+            var uniqueNames = alternatives.Select(alternative => alternative.DistinctBy(a => a.Name)).ToList()[0]
+                .Select(a => a.Name).ToList();
 
             foreach (var name in uniqueNames)
             {
@@ -41,6 +47,60 @@ namespace LoginForm.BL.Algorithms
             }
 
             result.Result = result.Result.OrderBy(x => x.Rank).ToList();
+
+            return result;
+        }
+
+        private VotingExecutionResult PleuralProcedure(List<VotingResult> results)
+        {
+            var result = new VotingExecutionResult();
+            result.MethodName = "Pleural Procedure";
+
+            var alternatives = results.Select(result => result.Alternatives).ToList();
+            var uniqueNames = alternatives.Select(alternative => alternative.DistinctBy(a => a.Name)).ToList()[0]
+                .Select(a => a.Name).ToList();
+
+            foreach (var name in uniqueNames)
+            {
+                var rank = results.Select(res => res.Alternatives.Where(a => a.Name == name && a.Order == 1)
+                    .Count()).ToList().Sum();
+
+                var votingExecution = new VotingExecution()
+                {
+                    Alternatives = new List<string>() { name },
+                    Rank = rank
+                };
+                result.Result.Add(votingExecution);
+            }
+
+            result.Result = result.Result.OrderByDescending(x => x.Rank).ToList();
+
+            return result;
+        }
+
+        private VotingExecutionResult ReversedPleuralProcedure(List<VotingResult> results)
+        {
+            var result = new VotingExecutionResult();
+            result.MethodName = "Reversed Pleural Procedure";
+
+            var alternatives = results.Select(result => result.Alternatives).ToList();
+            var uniqueNames = alternatives.Select(alternative => alternative.DistinctBy(a => a.Name)).ToList()[0]
+                .Select(a => a.Name).ToList();
+
+            foreach (var name in uniqueNames)
+            {
+                var rank = results.Select(res => res.Alternatives.Where(a => a.Name == name && a.Order == res.Alternatives.Count)
+                    .Count()).ToList().Sum();
+
+                var votingExecution = new VotingExecution()
+                {
+                    Alternatives = new List<string>() { name },
+                    Rank = rank
+                };
+                result.Result.Add(votingExecution);
+            }
+
+            result.Result = result.Result.OrderByDescending(x => x.Rank).ToList();
 
             return result;
         }
